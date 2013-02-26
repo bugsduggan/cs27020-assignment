@@ -64,6 +64,7 @@ The primary key will be a composite of the Company name, Role and Deadline. I
 have chosen to include the Deadline as it may be possible to apply for the same
 position with the same company on more than one occasion.
 
+\newpage
 \subsection{Functional dependencies}
 I have identified the following functional dependencies:
 
@@ -77,5 +78,10 @@ Each company will have its own blurb.
   Qualifications}
 \end{center}
 Each application will specify its own set of requirements.
+
+\begin{center}
+  \textbf{Qualification} $\rightarrow$ \textbf{Date, Grade}
+\end{center}
+Each qualification will have been achieved on a single date with a single grade.
 
 \end{document}
