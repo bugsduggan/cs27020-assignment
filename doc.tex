@@ -12,6 +12,7 @@
 \newpage
 
 \section{Un-normalised Analysis}
+\begin{center}
 \begin{tabular}{|l|l|}
 \hline
 Company name & varchar(128) \\ \hline
@@ -35,9 +36,9 @@ Satisfaction 3 & varchar(64) \\ \hline
 Qualification 1 & varchar(64) \\ \hline
 Qualification 2 & varchar(64) \\ \hline
 Qualification 3 & varchar(64) \\ \hline
-date 1 & date \\ \hline
-date 2 & date \\ \hline
-date 3 & date \\ \hline
+Date 1 & date \\ \hline
+Date 2 & date \\ \hline
+Date 3 & date \\ \hline
 Grade 1 & varchar(64) \\ \hline
 Grade 2 & varchar(64) \\ \hline
 Grade 3 & varchar(64) \\ \hline
@@ -56,5 +57,13 @@ Outcome & varchar(1024) \\ \hline
 Reflection & varchar(1024) \\
 \hline
 \end{tabular}
+\end{center}
+
+\subsection{Primary key}
+The primary key will be a composite of the Company name, Role and Deadline. I
+have chosen to include the Deadline as it may be possible to apply for the same
+position with the same company on more than one occasion.
+
+\subsection{Functional dependancies}
 
 \end{document}
