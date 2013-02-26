@@ -50,7 +50,7 @@ Relevance 2 & varchar(64) \\ \hline
 Relevance 3 & varchar(64) \\ \hline
 CV & varchar(128) \\ \hline
 Covering letter & varchar(128) \\ \hline
-date sent & date \\ \hline
+Date sent & date \\ \hline
 Response & boolean \\ \hline
 Interview date & date \\ \hline
 Outcome & varchar(1024) \\ \hline
@@ -64,6 +64,18 @@ The primary key will be a composite of the Company name, Role and Deadline. I
 have chosen to include the Deadline as it may be possible to apply for the same
 position with the same company on more than one occasion.
 
-\subsection{Functional dependancies}
+\subsection{Functional dependencies}
+I have identified the following functional dependencies:
+
+\begin{center}
+  \textbf{Company name} $\rightarrow$ \textbf{Company information}
+\end{center}
+Each company will have its own blurb.
+
+\begin{center}
+  \textbf{Company name, Role, Deadline} $\rightarrow$ \textbf{Required strengths, Required
+  Qualifications}
+\end{center}
+Each application will specify its own set of requirements.
 
 \end{document}
