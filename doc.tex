@@ -1,63 +1,45 @@
 \documentclass[a4paper, twoside]{article}
 
 \setlength{\oddsidemargin}{0in} \setlength{\evensidemargin}{0in}
-\setlength{\textwidth}{6.2in}
-\setlength{\topmargin}{-0.3in} \setlength{\textheight}{9.8in}
+\setlength{\textwidth}{6.2in} \setlength{\topmargin}{-0.3in}
+\setlength{\textheight}{9.8in}
 
-\title{CS27020 Assignment - Career Planner}
-\author{Tom Leaman (thl5)}
+\title{CS27020 Assignment - Career Planner} \author{Tom Leaman (thl5)}
 
-\begin{document}
-\maketitle
-\newpage
+\begin{document} \maketitle \newpage
 
 \section{Un-normalised Analysis}
-\begin{center}
-\begin{tabular}{|l|l|}
-\hline
-Company name & varchar(128) \\ \hline
-Company information & varchar(1024) \\ \hline
-Role & varchar(64) \\ \hline
-Deadline & date \\ \hline
-Required strength 1 & varchar(64) \\ \hline
-Required strength 2 & varchar(64) \\ \hline
-Required strength 3 & varchar(64) \\ \hline
-Required qualification 1 & varchar(64) \\ \hline
-Required qualification 2 & varchar(64) \\ \hline
-My strength 1 & varchar(64) \\ \hline
-My strength 2 & varchar(64) \\ \hline
-My strength 3 & varchar(64) \\ \hline
-Evidence 1 & varchar(64) \\ \hline
-Evidence 2 & varchar(64) \\ \hline
-Evidence 3 & varchar(64) \\ \hline
-Satisfaction 1 & varchar(64) \\ \hline
-Satisfaction 2 & varchar(64) \\ \hline
-Satisfaction 3 & varchar(64) \\ \hline
-Qualification 1 & varchar(64) \\ \hline
-Qualification 2 & varchar(64) \\ \hline
-Qualification 3 & varchar(64) \\ \hline
-Date 1 & date \\ \hline
-Date 2 & date \\ \hline
-Date 3 & date \\ \hline
-Grade 1 & varchar(64) \\ \hline
-Grade 2 & varchar(64) \\ \hline
-Grade 3 & varchar(64) \\ \hline
-Aim 1 & varchar(64) \\ \hline
-Aim 2 & varchar(64) \\ \hline
-Aim 3 & varchar(64) \\ \hline
-Relevance 1 & varchar(64) \\ \hline
-Relevance 2 & varchar(64) \\ \hline
-Relevance 3 & varchar(64) \\ \hline
-CV & varchar(128) \\ \hline
-Covering letter & varchar(128) \\ \hline
-Date sent & date \\ \hline
-Response & boolean \\ \hline
-Interview date & date \\ \hline
-Outcome & varchar(1024) \\ \hline
-Reflection & varchar(1024) \\
-\hline
-\end{tabular}
-\end{center}
+
+\begin{center} \begin{tabular}{|l|l|} \hline Company name & varchar(128) \\
+\hline Company information & varchar(1024) \\ \hline Role & varchar(64) \\
+\hline Deadline & date \\ \hline Required strength 1 & varchar(64) \\ \hline
+Required strength 2 & varchar(64) \\ \hline Required strength 3 & varchar(64) \\
+\hline Required qualification 1 & varchar(64) \\ \hline Required qualification 2
+& varchar(64) \\ \hline My strength 1 & varchar(64) \\ \hline My strength 2 &
+varchar(64) \\ \hline My strength 3 & varchar(64) \\ \hline Evidence 1 &
+varchar(64) \\ \hline Evidence 2 & varchar(64) \\ \hline Evidence 3 &
+varchar(64) \\ \hline Satisfaction 1 & varchar(64) \\ \hline Satisfaction 2 &
+varchar(64) \\ \hline Satisfaction 3 & varchar(64) \\ \hline Qualification 1 &
+varchar(64) \\ \hline Qualification 2 & varchar(64) \\ \hline Qualification 3 &
+varchar(64) \\ \hline Date 1 & date \\ \hline Date 2 & date \\ \hline Date 3 &
+date \\ \hline Grade 1 & varchar(64) \\ \hline Grade 2 & varchar(64) \\ \hline
+Grade 3 & varchar(64) \\ \hline Aim 1 & varchar(64) \\ \hline Aim 2 &
+varchar(64) \\ \hline Aim 3 & varchar(64) \\ \hline Relevance 1 & varchar(64) \\
+\hline Relevance 2 & varchar(64) \\ \hline Relevance 3 & varchar(64) \\ \hline
+CV & varchar(128) \\ \hline Covering letter & varchar(128) \\ \hline Date sent &
+date \\ \hline Response & boolean \\ \hline Interview date & date \\ \hline
+Outcome & varchar(1024) \\ \hline Reflection & varchar(1024) \\ \hline
+\end{tabular} \end{center}
+
+I have simply specified a field for each box on the form which I assume will
+contain data. This means that the table already conforms to 1NF (each field
+contains only one piece of data).
+
+I have specified all Varchar type attributes with a limit which is a power of 2
+(I believe this not only provides a more logically consistent scheme but also
+may improve efficiency and aid optimisation when using particular database
+engines). I would, however, hope to check these limits against representative
+example data before committing to these limits.
 
 \subsection{Primary key}
 The primary key will be a composite of the Company name, Role and Deadline. I
@@ -87,5 +69,24 @@ Each qualification will have been achieved on a single date with a single grade.
 \end{center}
 The composite primary key uniquely identifies the remaining information in each
 application.
+
+It is possible that fields such as Strengths and Qualifications be
+functionally dependent on the Required strengths and Required qualifications. I
+have decided not to specify this as a functional dependency in this design; if
+the user is applying for the same role at the same company at a different time,
+it is possible (or even likely) that they will want to specify different
+Strengths and Qualifications that they have gained in the intervening time.
+
+\section{2nd Normal Form}
+The Company information is only dependent on the Company name (part of the
+primary key). So a new table will be created containing the Company name (which
+will be the primary key) and the Company information. The Company information
+field can then be removed from the main table.
+
+\section{3rd Normal Form}
+The Date and Grade of the Qualification are transitively dependent on the
+Company name, Role and Deadline so to bring the database to 3rd normal form, we
+will create a new table with Qualification (which will be the primary key), Date
+and Grade. We can then remove the Date and Grade fields from the main table.
 
 \end{document}
