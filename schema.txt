@@ -19,7 +19,8 @@ career-planner=# \d company
 Indexes:
     "company_pkey" PRIMARY KEY, btree (company_name)
 Referenced by:
-    TABLE "main" CONSTRAINT "main_company_name_fkey" FOREIGN KEY (company_name) REFERENCES company(company_name)
+    TABLE "main" CONSTRAINT "main_company_name_fkey" FOREIGN KEY\
+(company_name) REFERENCES company(company_name)
 
 career-planner=# \d qualification
            Table "public.qualification"
@@ -31,9 +32,12 @@ career-planner=# \d qualification
 Indexes:
     "qualification_pkey" PRIMARY KEY, btree (qualification)
 Referenced by:
-    TABLE "main" CONSTRAINT "main_qualification_1_fkey" FOREIGN KEY (qualification_1) REFERENCES qualification(qualification)
-    TABLE "main" CONSTRAINT "main_qualification_2_fkey" FOREIGN KEY (qualification_2) REFERENCES qualification(qualification)
-    TABLE "main" CONSTRAINT "main_qualification_3_fkey" FOREIGN KEY (qualification_3) REFERENCES qualification(qualification)
+    TABLE "main" CONSTRAINT "main_qualification_1_fkey" FOREIGN KEY\
+(qualification_1) REFERENCES qualification(qualification)
+    TABLE "main" CONSTRAINT "main_qualification_2_fkey" FOREIGN KEY\
+(qualification_2) REFERENCES qualification(qualification)
+    TABLE "main" CONSTRAINT "main_qualification_3_fkey" FOREIGN KEY\
+(qualification_3) REFERENCES qualification(qualification)
 
 career-planner=# \d main
                       Table "public.main"
@@ -75,9 +79,13 @@ career-planner=# \d main
 Indexes:
     "main_pkey" PRIMARY KEY, btree (company_name, role, deadline)
 Foreign-key constraints:
-    "main_company_name_fkey" FOREIGN KEY (company_name) REFERENCES company(company_name)
-    "main_qualification_1_fkey" FOREIGN KEY (qualification_1) REFERENCES qualification(qualification)
-    "main_qualification_2_fkey" FOREIGN KEY (qualification_2) REFERENCES qualification(qualification)
-    "main_qualification_3_fkey" FOREIGN KEY (qualification_3) REFERENCES qualification(qualification)
+    "main_company_name_fkey" FOREIGN KEY (company_name) REFERENCES\
+company(company_name)
+    "main_qualification_1_fkey" FOREIGN KEY (qualification_1) REFERENCES\
+qualification(qualification)
+    "main_qualification_2_fkey" FOREIGN KEY (qualification_2) REFERENCES\
+qualification(qualification)
+    "main_qualification_3_fkey" FOREIGN KEY (qualification_3) REFERENCES\
+qualification(qualification)
 
 career-planner=# \q
