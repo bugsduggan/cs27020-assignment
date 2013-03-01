@@ -4,6 +4,8 @@
 \setlength{\textwidth}{6.2in} \setlength{\topmargin}{-0.3in}
 \setlength{\textheight}{9.8in}
 
+\usepackage{verbatim}
+
 \title{CS27020 Assignment - Career Planner} \author{Tom Leaman (thl5)}
 
 \begin{document} \maketitle \newpage
@@ -77,6 +79,10 @@ the user is applying for the same role at the same company at a different time,
 it is possible (or even likely) that they will want to specify different
 Strengths and Qualifications that they have gained in the intervening time.
 
+Likewise, it would be possible to specify the Evidence and Satisfaction fields
+as functionally dependent on the Strength; again, I feel this is too great of an
+assumption to make without sample data/client consultation.
+
 \section{2nd Normal Form}
 The Company information is only dependent on the Company name (part of the
 primary key). So a new table will be created containing the Company name (which
@@ -88,5 +94,13 @@ The Date and Grade of the Qualification are transitively dependent on the
 Company name, Role and Deadline so to bring the database to 3rd normal form, we
 will create a new table with Qualification (which will be the primary key), Date
 and Grade. We can then remove the Date and Grade fields from the main table.
+
+\newpage
+\section{PostGreSQL implementation}
+\subsection{Table schema}
+\verbatiminput{schema.txt}
+\newpage
+\subsection{Queries}
+\verbatiminput{queries.txt}
 
 \end{document}
