@@ -1,0 +1,83 @@
+psql (9.2.3)
+Type "help" for help.
+
+career-planner=# \d
+           List of relations
+ Schema |     Name      | Type  | Owner 
+--------+---------------+-------+-------
+ public | company       | table | tom
+ public | main          | table | tom
+ public | qualification | table | tom
+(3 rows)
+
+career-planner=# \d company
+                  Table "public.company"
+       Column        |          Type           | Modifiers 
+---------------------+-------------------------+-----------
+ company_name        | character varying(128)  | not null
+ company_information | character varying(1024) | 
+Indexes:
+    "company_pkey" PRIMARY KEY, btree (company_name)
+Referenced by:
+    TABLE "main" CONSTRAINT "main_company_name_fkey" FOREIGN KEY (company_name) REFERENCES company(company_name)
+
+career-planner=# \d qualification
+           Table "public.qualification"
+    Column     |         Type          | Modifiers 
+---------------+-----------------------+-----------
+ qualification | character varying(64) | not null
+ date          | date                  | 
+ grade         | character varying(64) |
+Indexes:
+    "qualification_pkey" PRIMARY KEY, btree (qualification)
+Referenced by:
+    TABLE "main" CONSTRAINT "main_qualification_1_fkey" FOREIGN KEY (qualification_1) REFERENCES qualification(qualification)
+    TABLE "main" CONSTRAINT "main_qualification_2_fkey" FOREIGN KEY (qualification_2) REFERENCES qualification(qualification)
+    TABLE "main" CONSTRAINT "main_qualification_3_fkey" FOREIGN KEY (qualification_3) REFERENCES qualification(qualification)
+
+career-planner=# \d main
+                      Table "public.main"
+          Column          |          Type           | Modifiers 
+--------------------------+-------------------------+-----------
+ company_name             | character varying(128)  | not null
+ role                     | character varying(64)   | not null
+ deadline                 | date                    | not null
+ required_strength_1      | character varying(64)   | 
+ required_strength_2      | character varying(64)   | 
+ required_strength_3      | character varying(64)   | 
+ required_qualification_1 | character varying(64)   | 
+ required_qualification_2 | character varying(64)   | 
+ my_strength_1            | character varying(64)   | 
+ my_strength_2            | character varying(64)   | 
+ my_strength_3            | character varying(64)   | 
+ evidence_1               | character varying(64)   | 
+ evidence_2               | character varying(64)   | 
+ evidence_3               | character varying(64)   | 
+ satisfaction_1           | character varying(64)   | 
+ satisfaction_2           | character varying(64)   | 
+ satisfaction_3           | character varying(64)   | 
+ qualification_1          | character varying(64)   | 
+ qualification_2          | character varying(64)   | 
+ qualification_3          | character varying(64)   | 
+ aim_1                    | character varying(64)   | 
+ aim_2                    | character varying(64)   | 
+ aim_3                    | character varying(64)   | 
+ relevance_1              | character varying(64)   | 
+ relevance_2              | character varying(64)   | 
+ relevance_3              | character varying(64)   | 
+ cv                       | character varying(128)  | 
+ covering_letter          | character varying(128)  | 
+ date_sent                | date                    | 
+ response                 | boolean                 | 
+ interview_date           | date                    | 
+ outcome                  | character varying(1024) | 
+ reflection               | character varying(1024) | 
+Indexes:
+    "main_pkey" PRIMARY KEY, btree (company_name, role, deadline)
+Foreign-key constraints:
+    "main_company_name_fkey" FOREIGN KEY (company_name) REFERENCES company(company_name)
+    "main_qualification_1_fkey" FOREIGN KEY (qualification_1) REFERENCES qualification(qualification)
+    "main_qualification_2_fkey" FOREIGN KEY (qualification_2) REFERENCES qualification(qualification)
+    "main_qualification_3_fkey" FOREIGN KEY (qualification_3) REFERENCES qualification(qualification)
+
+career-planner=# \q
