@@ -1,0 +1,24 @@
+psql (9.2.3)
+Type "help" for help.
+
+career-planner=# SELECT company_name, role, interview_date FROM main WHERE response='t';
+ company_name | role  | interview_date 
+--------------+-------+----------------
+ Y Popty      | Baker | 2012-12-02
+(1 row)
+
+career-planner=# SELECT * FROM qualification WHERE grade='A' OR grade='B';
+ qualification |    date    | grade 
+---------------+------------+-------
+ Pro Knitter   | 2012-11-01 | A
+ GNVQ Tetris   | 2013-01-01 | B
+(2 rows)
+
+career-planner=# SELECT company_name, role FROM main WHERE response='f';
+ company_name  |  role   
+---------------+---------
+ Awooga Models | Jnr Dev
+ Spar          | Lackey
+(2 rows)
+
+career-planner=# \q
